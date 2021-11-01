@@ -8,7 +8,8 @@ class Quote(models.Model):
     # data attributes:
     text = models.TextField(blank=True)
     author = models.TextField(blank=True)
-
+    image_url = models.URLField(blank=True)
+    
     def __str__(self):
         '''Return a string representation of this quote.'''
 
