@@ -15,4 +15,3 @@ class Quote(models.Model):
 
         return f'"{self.text}" - {self.author}'
 
-    

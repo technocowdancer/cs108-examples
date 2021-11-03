@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hw/', include('hello_world.urls')), 
-    path('pages/', include('pages.urls')), ## new! link in URLS from our application
+    path('', include('pages.urls')), ## new! link in URLS from our application
     path('quotes/', include('quotes.urls')),
+    path('mini_fb/', include('mini_fb.urls')),
 ]
