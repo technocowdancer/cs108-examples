@@ -10,5 +10,5 @@ class ShowAllProfilesView(ListView):
     template called show_all_profiles.html to display all Profiles.
     '''
     model = Profile
-    template_name = "show_all_profiles.html"
+    template_name = "mini_fb/show_all_profiles.html"
     context_object_name = "profiles"
