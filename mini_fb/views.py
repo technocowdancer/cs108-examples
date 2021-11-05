@@ -4,6 +4,7 @@ from .models import Profile
 
 # Create your views here.
 
+
 class ShowAllProfilesView(ListView):
     '''
     Obtain data for all Profile records, and to deleguate work to a 
