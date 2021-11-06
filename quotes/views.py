@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Quote, Person
 import random
+from .forms import CreateQuoteForm, UpdateQuoteForm
 
 
 class HomePageView(ListView):
@@ -38,3 +39,19 @@ class PersonPageView(DetailView):
     model = Person                        # Retrieve Person objects from the database
     template_name = "quotes/person.html"  # Delegate the display to this teplate
     context_object_name = "person"        # Use this variable name in the template 
+
+class CreateQuoteView(CreateView):
+    '''Create a new Quote object and store it in the database.'''
+
+    model = Quote 
+    form_class = CreateQuoteForm
+    template_name = "quotes/create_quote_form.html"
+
+class UpdateQuoteView(UpdateView):
+    '''Update a new Quote object and store it in the database.'''
+
+    model = Quote 
+    form_class = UpdateQuoteForm
+    template_name = "quotes/update_quote_form.html"
+
+
