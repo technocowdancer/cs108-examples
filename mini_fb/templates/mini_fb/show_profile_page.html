@@ -35,20 +35,12 @@
 
         </tbody>
     </table>
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    "2019-11-05 08:11:46 Imagine all the people living life in
-                    peace. You may say I'm a dreamer, but I'm not the only one. I 
-                    hope someday you'll join us, and the word will be as one."
-                </td>
-            </tr>
-            <tr>
-                <td>More Quotes</td>
-            </tr>
-        </tbody>
-    </table>
+<hr>
+    <ul>
+        {% for profile in profiles %}
+        <li>{{profile.statusmessage.get_status_message}}</li>
+        {% endfor %}
+    </ul>
 
 </body>
 {% endblock %}

@@ -34,5 +34,10 @@ class StatusMessage(models.Model):
     def __str__(self):
         '''return a string representation of this model'''
         return f'{self.time_stamp} {self.message}'
+
+    def get_status_message(self):
+        '''obatain status messages for this profile.'''
+        
+        return Profile.objects.filter(person=self)
         
 
