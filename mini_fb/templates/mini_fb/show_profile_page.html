@@ -1,0 +1,54 @@
+<!-- templates/show_profile_page.html -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<body>
+
+    <h2> {{profile}}'s Profile Page</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="{{profile.profile_image_url}}">
+                </td>
+                <td>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{profile}}</td>
+                            </tr>
+                            <tr>
+                                <th>Convent/City</th>
+                                <td>{{profile.city}}</td>
+                            </tr>
+                            <tr>
+                                <th>Birth Date</th>
+                                <td>{{profile.birth_date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    "2019-11-05 08:11:46 Imagine all the people living life in
+                    peace. You may say I'm a dreamer, but I'm not the only one. I 
+                    hope someday you'll join us, and the word will be as one."
+                </td>
+            </tr>
+            <tr>
+                <td>More Quotes</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+{% endblock %}

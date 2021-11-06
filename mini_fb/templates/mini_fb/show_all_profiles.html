@@ -1,7 +1,8 @@
 
 <!-- templates/show_all_profiles.html -->
+{% extends 'mini_fb/base.html' %}
 
-<h1> MiniFacebook</h1>
+{% block content %}
 
 <h2>Showing All Profiles</h2>
 
@@ -17,10 +18,10 @@
         {% for profile in profiles %}
         <tr>
 
-            <td>{{profile}}</td>
+            <td><a href="{% url 'show_profile_page' profile.pk %}">{{profile}}</a></td>
             <td> {{profile.city}}</td>
             <td width="10%">
-                <a href="">
+                <a href="{% url 'show_profile_page' profile.pk %}">
                     <img src ="{{profile.profile_image_url}}" style="max-width:100%;">
                 </a>
             </td>
@@ -29,3 +30,4 @@
         {% endfor %}
     </tbody>
 </table>
+{% endblock %}

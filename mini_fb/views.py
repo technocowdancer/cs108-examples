@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from .models import Profile
+from django.views.generic.detail import DetailView
+from .models import Profile, StatusMessage
 
 # Create your views here.
 
@@ -13,3 +14,10 @@ class ShowAllProfilesView(ListView):
     model = Profile
     template_name = "mini_fb/show_all_profiles.html"
     context_object_name = "profiles"
+
+class ShowProfilePageView(DetailView):
+    '''obtain data for one Profile and delegate work to template
+    called show_profile_page.html to display the profile'''
+    model = Profile
+    template_name = "mini_fb/show_profile_page.html"
+    context_object_name = "profile"
