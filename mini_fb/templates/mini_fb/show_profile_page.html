@@ -36,9 +36,10 @@
         </tbody>
     </table>
 <hr>
+    
     <ul>
-        {% for profile in profiles %}
-        <li>{{profile.statusmessage.get_status_message}}</li>
+        {% for message in profile.get_status_message %}
+        {{message}} <br>
         {% endfor %}
     </ul>
 

@@ -1,4 +1,5 @@
 from django.db import models
+import datetime 
 
 # Create your models here.
 
@@ -21,6 +22,10 @@ class Profile(models.Model):
         '''return a string representation of this object.'''
         return f'{self.first_name} {self.last_name}'
 
+    def get_status_message(self):
+        '''obatain status messages for this profile.'''
+        return StatusMessage.objects.filter(profile=self)
+
 
 class StatusMessage(models.Model):
     '''Will model the data attributes of Facebook status message.'''
@@ -35,9 +40,6 @@ class StatusMessage(models.Model):
         '''return a string representation of this model'''
         return f'{self.time_stamp} {self.message}'
 
-    def get_status_message(self):
-        '''obatain status messages for this profile.'''
-        
-        return Profile.objects.filter(person=self)
+
         
 
