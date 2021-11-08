@@ -1,4 +1,4 @@
-<!-- templates/show_profile_page.html -->
+<!-- templates/mini_fb/show_profile_page.html -->
 
 {% extends 'mini_fb/base.html' %}
 
@@ -39,7 +39,7 @@
     
     <ul>
         {% for message in profile.get_status_message %}
-        {{message}} <br>
+        {{message.time_stamp|date:"M d y h:m:s"}} {{message.message}} <br>
         {% endfor %}
     </ul>
 

@@ -1,5 +1,6 @@
 from django.db import models
 import datetime 
+from django.urls import reverse
 
 # Create your models here.
 
@@ -26,6 +27,12 @@ class Profile(models.Model):
         '''obatain status messages for this profile.'''
         return StatusMessage.objects.filter(profile=self)
 
+    def get_absolute_url(self):
+        '''Provide a url to show this object.'''
+        return reverse('show_profile_page', kwargs={'pk':self.pk})
+
+
+
 
 class StatusMessage(models.Model):
     '''Will model the data attributes of Facebook status message.'''
@@ -38,6 +45,7 @@ class StatusMessage(models.Model):
 
     def __str__(self):
         '''return a string representation of this model'''
+
         return f'{self.time_stamp} {self.message}'
 
 
