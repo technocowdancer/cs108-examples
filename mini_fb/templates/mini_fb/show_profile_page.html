@@ -35,8 +35,20 @@
 
         </tbody>
     </table>
+    <a href="{% url 'update_profile' profile.pk %}">Edit This Profile</a>
 <hr>
-    
+    <h3>Post a Status Message</h3>
+    <form method="POST">
+        {% csrf_token %} 
+        <!--{{form}}-->
+        <table>
+        {{form.as_table}} <!-- paragraph style formatting -->
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Share"></td>
+        </tr>
+        </table>
+    </form>
     <ul>
         {% for message in profile.get_status_message %}
         {{message.time_stamp|date:"M d y h:m:s"}} {{message.message}} <br>

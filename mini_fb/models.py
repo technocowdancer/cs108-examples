@@ -31,9 +31,6 @@ class Profile(models.Model):
         '''Provide a url to show this object.'''
         return reverse('show_profile_page', kwargs={'pk':self.pk})
 
-
-
-
 class StatusMessage(models.Model):
     '''Will model the data attributes of Facebook status message.'''
     # time stamp
