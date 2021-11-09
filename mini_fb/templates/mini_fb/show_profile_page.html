@@ -38,11 +38,11 @@
     <a href="{% url 'update_profile' profile.pk %}">Edit This Profile</a>
 <hr>
     <h3>Post a Status Message</h3>
-    <form method="POST">
+    <form action="{% url 'post_status_message' profile.pk %}" method="POST">
         {% csrf_token %} 
         <!--{{form}}-->
         <table>
-        {{form.as_table}} <!-- paragraph style formatting -->
+        {{create_status_form.as_table}} <!-- paragraph style formatting -->
         <tr>
             <td></td>
             <td><input type="submit" value="Share"></td>
