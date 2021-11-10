@@ -40,6 +40,9 @@ class StatusMessage(models.Model):
     # profile
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
+    # for images
+    image_file = models.ImageField(blank=True)
+    
     def __str__(self):
         '''return a string representation of this model'''
 
@@ -47,4 +50,3 @@ class StatusMessage(models.Model):
 
 
         
-

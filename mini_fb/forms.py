@@ -26,7 +26,9 @@ class UpdateProfileForm(forms.ModelForm):
 
 class CreateStatusMessageForm(forms.ModelForm):
     '''A form to create a new message post on a profile.'''
+    image_file = forms.ImageField(required=False)
     class Meta:
         '''additional data about this form'''
         model = StatusMessage # which model to create
-        fields = ['message'] # which fields to create
+        fields = ['message', 'image_file'] # which fields to create
+

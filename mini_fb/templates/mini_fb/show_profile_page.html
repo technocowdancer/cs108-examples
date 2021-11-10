@@ -32,13 +32,12 @@
                     </table>
                 </td>
             </tr>
-
         </tbody>
     </table>
     <a href="{% url 'update_profile' profile.pk %}">Edit This Profile</a>
 <hr>
     <h3>Post a Status Message</h3>
-    <form action="{% url 'post_status_message' profile.pk %}" method="POST">
+    <form action="{% url 'post_status_message' profile.pk %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
         <!--{{form}}-->
         <table>
@@ -51,6 +50,9 @@
     </form>
     <ul>
         {% for message in profile.get_status_message %}
+        {% if message.image_file %}
+        <img src='{{message.image_file.url}}' style='max-width: 600;'>
+        {% endif %}
         {{message.time_stamp|date:"M d y h:m:s"}} {{message.message}} <br>
         {% endfor %}
     </ul>
