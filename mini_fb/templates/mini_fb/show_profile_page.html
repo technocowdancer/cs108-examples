@@ -50,6 +50,7 @@
     </form>
     <ul>
         {% for message in profile.get_status_message %}
+         <a href="{% url 'delete_message' profile_pk=profile.pk status_pk=message.pk %}">Delete</a>
         {% if message.image_file %}
         <img src='{{message.image_file.url}}' style='max-width: 600;'>
         {% endif %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -82,3 +82,49 @@ def post_status_message(request, pk):
     url = reverse('show_profile_page', kwargs={'pk': pk})
     return redirect(url)
 
+
+
+
+class DeleteStatusMessageView(DeleteView):
+    '''Delete a status message object and remove it in the database.'''
+
+
+    template_name = "mini_fb/delete_status_form.html"
+    queryset = StatusMessage.objects.all()
+
+    def get_context_data(self, **kwargs):
+        '''Return the context data (a dictionary) to be used in the template.'''
+
+        # obtain the default context data (a dictionary) from the superclass; 
+        # this will include the Profile record to display for this page view
+        context = super(DeleteStatusMessageView, self).get_context_data(**kwargs)
+        # create a new CreateStatusMessageForm, and add it into the context dictionary
+        st_msg = StatusMessage.objects.get(pk=self.kwargs['status_pk'])
+        context['status_to_delete'] = st_msg
+        # return this context dictionary
+        return context
+
+    def get_object(self):
+        '''Select one quote at random'''
+
+        # obtain all quotes using the object manager
+
+        st_msg = StatusMessage.objects.get(pk=self.kwargs['status_pk'])
+        # select one at random
+        return st_msg
+
+    
+    def get_success_url(self):
+        
+        '''return a url to which we should be directed after the delete.'''
+    
+        # read the URL data values into variables
+
+        # read the URL data values into variables
+        # # get the pk for this quote
+        pk = self.kwargs.get('status_pk')
+        message = StatusMessage.objects.filter(pk=pk).first()
+
+        # # find the person associated with the quote
+        person = message.profile
+        return reverse('show_profile_page', kwargs={'pk':person.pk})

@@ -1,0 +1,18 @@
+<!-- templates/mini_fb/delete_status_form.html -->
+
+<h3> Are you sure you want to delete this message? </h3>
+
+{{status_to_delete}}
+<p>
+
+</p>
+
+<form method='POST'>
+    {% csrf_token %}
+    <input type='submit' name="yes" value="yes">
+</form>
+
+<form method='GET' action="{% url 'show_profile_page' status_to_delete.profile.pk %}">
+    {% csrf_token %}
+    <input type='submit' name="no" value="no">
+</form>
