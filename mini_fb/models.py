@@ -18,6 +18,16 @@ class Profile(models.Model):
     profile_image_url = models.URLField(blank=True)
     birth_date = models.TextField(blank=True)
 
+    ##### relates profles to other profiles
+    # Django will create the underlying database structure 
+    # to allow any Profile object to have other Profile objects 
+    # as friends.
+    friends = models.ManyToManyField("self")
+    ###### returns all friends for this profile
+    def get_friends(self):
+
+        QuerySet = self.friends.all()
+        return QuerySet
 
     def __str__(self):
         '''return a string representation of this object.'''
