@@ -128,3 +128,27 @@ class DeleteStatusMessageView(DeleteView):
         # # find the person associated with the quote
         person = message.profile
         return reverse('show_profile_page', kwargs={'pk':person.pk})
+
+class ShowNewsFeedView(DetailView):
+    '''create a view for the news feed of a profile's friends'''
+    # time = models.TimeField(auto_now_add=True)
+    model = Profile
+    template_name = "mini_fb/show_news_feed.html"
+    context_object_name = "profile_for_feed"
+    def get_context_data(self, **kwargs):
+        '''Return the context data (a dictionary) to be used in the template.'''
+
+        # obtain the default context data (a dictionary) from the superclass; 
+        # this will include the Profile record to display for this page view
+        context = super(ShowNewsFeedView, self).get_context_data(**kwargs)
+        # create a new CreateStatusMessageForm, and add it into the context dictionary
+
+        # find the profile objects
+        pk = self.kwargs.get('pk')
+        get_profile_object = Profile.objects.get(pk=pk) # <-- in pre-class material
+        # call the news feed method on that object
+        News_feed = get_profile_object.get_news_feed()
+        # put the news feed into object
+        context['news_feed'] = News_feed
+        # return this context dictionary
+        return context

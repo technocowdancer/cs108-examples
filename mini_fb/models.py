@@ -1,5 +1,6 @@
 from django.db import models
-import datetime 
+import datetime
+from django.db.models.query import QuerySet 
 from django.urls import reverse
 
 # Create your models here.
@@ -25,9 +26,17 @@ class Profile(models.Model):
     friends = models.ManyToManyField("self")
     ###### returns all friends for this profile
     def get_friends(self):
+        '''Get a list of friends for the profile'''
 
-        QuerySet = self.friends.all()
-        return QuerySet
+        friend_list = self.friends.all()
+        return friend_list
+
+    def get_news_feed(self):
+        '''get list of all status messages then filter by friends'''
+        news = StatusMessage.objects.all().order_by("-time_stamp")
+        friend_list = self.get_friends()
+        filtered = news.filter(profile__in=friend_list)
+        return filtered
 
     def __str__(self):
         '''return a string representation of this object.'''

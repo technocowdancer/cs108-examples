@@ -35,6 +35,7 @@
         </tbody>
     </table>
     <a href="{% url 'update_profile' profile.pk %}">Edit This Profile</a>
+    <a href="{% url 'news_feed' profile.pk %}">Show {{profile}}'s News Feed</a>
 <hr>
 {% if profile.get_friends %}
     <h3>{{profile}}'s Friends</h3>
