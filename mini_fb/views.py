@@ -152,3 +152,28 @@ class ShowNewsFeedView(DetailView):
         context['news_feed'] = News_feed
         # return this context dictionary
         return context
+
+class ShowPossibleFriendsView(DetailView):
+    ''' class, which inherits from the generic DetailView class. The base class will do everything we want, without overriding any methods.'''
+
+    model = Profile
+    template_name = "mini_fb/show_possible_friends.html"
+    context_object_name = "profile_of_possible_friend"
+
+    def get_context_data(self, **kwargs):
+        '''Return the context data (a dictionary) to be used in the template.'''
+
+        # obtain the default context data (a dictionary) from the superclass; 
+        # this will include the Profile record to display for this page view
+        context = super(ShowPossibleFriendsView, self).get_context_data(**kwargs)
+        # create a new CreateStatusMessageForm, and add it into the context dictionary
+
+        # find the profile objects
+        pk = self.kwargs.get('pk')
+        get_profile_object = Profile.objects.get(pk=pk) # <-- in pre-class material
+        # call the news feed method on that object
+        Friend_suggestions = get_profile_object.get_friend_suggestions()
+        # put the news feed into object
+        context['friend_suggestions'] = Friend_suggestions
+        # return this context dictionary
+        return context

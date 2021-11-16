@@ -3,7 +3,7 @@ import datetime
 from django.db.models.query import QuerySet 
 from django.urls import reverse
 
-# Create your models here.
+# Create your models here. 
 
 
 class Profile(models.Model):
@@ -30,6 +30,15 @@ class Profile(models.Model):
 
         friend_list = self.friends.all()
         return friend_list
+
+    def get_friend_suggestions(self):
+        '''a function of profile class to get friend suggestions'''
+        # make a list of all users that excludes those on friend_list
+        friend_list = self.get_friends()
+        friend_suggestions_list = Profile.objects.all()
+        # return this list 
+        return friend_suggestions_list
+
 
     def get_news_feed(self):
         '''get list of all status messages then filter by friends'''
