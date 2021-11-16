@@ -36,13 +36,13 @@ class Profile(models.Model):
         # make a list of all users that excludes those on friend_list
 
         # a list of everyone
-        friend_suggestions_list = Profile.objects.all()
+        friend_suggestions_list = Profile.objects.all().exclude(friends=self).exclude(id=self.pk)
         # a list of friends
-        friend_list = self.get_friends()
+        
         # make a list that is equal to first list with all items from second list removed
-        final_list = [x for x in friend_suggestions_list if x not in friend_list]
+    
         # return this list 
-        return final_list
+        return friend_suggestions_list
 
     # def get_friend_suggestions(self):
     #     '''a function of profile class to get friend suggestions'''

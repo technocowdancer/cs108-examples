@@ -1,7 +1,7 @@
 from django.urls import path
 
 from mini_fb.forms import CreateStatusMessageForm
-from .views import DeleteStatusMessageView, ShowAllProfilesView, ShowNewsFeedView, ShowProfilePageView, CreateProfileView, UpdateProfileView, post_status_message, ShowPossibleFriendsView
+from .views import *
 
 urlpatterns =[
     path('', ShowAllProfilesView.as_view(), name="show_all_profiles"),
@@ -12,4 +12,5 @@ urlpatterns =[
     path('profile/<int:profile_pk>/delete_message/<int:status_pk>', DeleteStatusMessageView.as_view(), name='delete_message'),
     path('profile/<int:pk>/news_feed', ShowNewsFeedView.as_view(), name='news_feed'),
     path('profile/<int:pk>/show_possible_friend', ShowPossibleFriendsView.as_view(), name='show_possible_friends'),
+    path(' profile/<int:profile_pk>/add_friend/<int:friend_pk>', add_friend, name='add_friend'),
 ]

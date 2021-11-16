@@ -158,7 +158,7 @@ class ShowPossibleFriendsView(DetailView):
 
     model = Profile
     template_name = "mini_fb/show_possible_friends.html"
-    context_object_name = "profile_of_possible_friend"
+    context_object_name = "profile"
 
     def get_context_data(self, **kwargs):
         '''Return the context data (a dictionary) to be used in the template.'''
@@ -177,3 +177,21 @@ class ShowPossibleFriendsView(DetailView):
         context['friend_suggestions'] = Friend_suggestions
         # return this context dictionary
         return context
+
+def add_friend(request, profile_pk, friend_pk):
+    '''The objective of this function is to process the add_friend request, 
+    to add a friend for a given profile.'''
+    # find the Profile object which is adding the friend, and store it into a variable
+
+    profile = Profile.objects.get(pk=profile_pk)
+
+    # find the Profile object of the friend to add, and store it into another variable
+    friend = Profile.objects.get(pk=friend_pk)
+    # add that friend’s Profile into the profile.friends object (using the method add).
+    profile.friends.add(friend)
+    # save the profile object.
+    profile.save()
+
+    return redirect(reverse('show_profile_page', kwargs={'pk':profile_pk}))
+
+
